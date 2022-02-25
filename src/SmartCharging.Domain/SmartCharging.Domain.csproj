@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <None Remove="Data\" />
+    <None Remove="Data\EntityFramework\" />
+    <None Remove="Data\GenericRepositories\" />
+    <None Remove="Data\UnitOfWorks\" />
+    <None Remove="Data\EntityFramework\Entities\" />
+    <None Remove="Data\EntityFramework\Configurations\" />
+    <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="Data\EntityFramework\Configurations\Group\" />
+    <None Remove="Microsoft.Extensions.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Data\EntityFramework\" />
+    <Folder Include="Data\GenericRepositories\" />
+    <Folder Include="Data\UnitOfWorks\" />
+    <Folder Include="Data\EntityFramework\Entities\" />
+    <Folder Include="Data\EntityFramework\Configurations\" />
+    <Folder Include="Data\EntityFramework\Configurations\Groups\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+  </ItemGroup>
+</Project>
