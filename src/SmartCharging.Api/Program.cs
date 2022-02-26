@@ -1,4 +1,6 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using FluentValidation.AspNetCore;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Microsoft.OpenApi.Models;
 using SmartCharging.Service.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,10 @@ builder.Services.AddSwaggerGen(c =>
         TermsOfService = new Uri("http://www.greenflux.com"),
     });
 });
+
+builder.Services.AddFluentValidation(ValidationExtention.Register);
+builder.Services.AddFluentValidationRulesToSwagger();
+
 #endregion
 
 var app = builder.Build();

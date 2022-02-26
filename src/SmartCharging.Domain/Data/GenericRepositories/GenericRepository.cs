@@ -10,6 +10,7 @@ namespace SmartCharging.Domain.Data.GenericRepositories;
 /// GenericRepository
 /// </summary>
 /// <typeparam name="T"></typeparam>
+/// <typeparam name="TKey"></typeparam>
 public class GenericRepository<T, TKey> where T : BaseEntity<TKey>
 {
     private readonly DbSet<T> _dbSet;
@@ -29,6 +30,25 @@ public class GenericRepository<T, TKey> where T : BaseEntity<TKey>
     public virtual IQueryable<T> List()
     {
         return _dbSet;
+    }
+    
+    /// <summary>
+    /// ListNT
+    /// </summary>
+    /// <returns></returns>
+    public virtual IQueryable<T> ListNT()
+    {
+        return _dbSet.AsNoTracking();
+    }
+    
+    // <summary>
+    /// FindAsync
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public virtual async Task<T> FindAsync(TKey id)
+    {
+        return await _dbSet.FirstOrDefaultAsync(x => x.Id.Equals(id));
     }
 
     /// <summary>

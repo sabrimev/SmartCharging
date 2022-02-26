@@ -3,22 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Business\ChargeStations\DTOs" />
     <Folder Include="Business\ChargeStations\Mapping" />
-    <Folder Include="Business\ChargeStations\Services" />
     <Folder Include="Business\ChargeStations\Validations" />
     <Folder Include="Business\Connectors\DTOs" />
     <Folder Include="Business\Connectors\Mapping" />
-    <Folder Include="Business\Connectors\Services" />
     <Folder Include="Business\Connectors\Validations" />
-    <Folder Include="Business\Groups\DTOs" />
-    <Folder Include="Business\Groups\Mapping" />
-    <Folder Include="Business\Groups\Services" />
-    <Folder Include="Business\Groups\Validations" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +26,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
   </ItemGroup>
 
 </Project>
