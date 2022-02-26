@@ -25,7 +25,6 @@
     <Folder Include="Data\UnitOfWorks\" />
     <Folder Include="Data\EntityFramework\Entities\" />
     <Folder Include="Data\EntityFramework\Configurations\" />
-    <Folder Include="Data\EntityFramework\Configurations\Groups\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />

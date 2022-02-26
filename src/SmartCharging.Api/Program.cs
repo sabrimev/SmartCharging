@@ -1,16 +1,34 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.OpenApi.Models;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+//builder.Services.Register();
+
+#region Swagger
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "GreenFlux",
+        Description = "GreenFlux Smart Charging",
+        TermsOfService = new Uri("http://www.greenflux.com"),
+    });
+});
+#endregion
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger API V1");
+    c.RoutePrefix = "";
+});
 
 app.MapControllers();
 
 app.Run();
-

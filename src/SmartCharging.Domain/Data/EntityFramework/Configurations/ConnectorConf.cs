@@ -4,10 +4,10 @@ using SmartCharging.Domain.Data.EntityFramework.Configurations.Base;
 
 namespace SmartCharging.Domain.Data.EntityFramework.Configurations;
 
-internal class GroupConf : BaseConf<Group, Guid>
+internal class ConnectorCong : BaseConf<Connector, int>
 {
-    public override void Configure(EntityTypeBuilder<Group> builder)
+    public override void Configure(EntityTypeBuilder<Connector> builder)
     {
-        builder.Property(x => x.Name).HasMaxLength(250);
+        
     }
 }

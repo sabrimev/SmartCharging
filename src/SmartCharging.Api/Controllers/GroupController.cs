@@ -13,7 +13,7 @@ namespace SmartCharging.Api.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            return Ok();
         }
     }
 }

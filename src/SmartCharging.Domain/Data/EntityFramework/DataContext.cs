@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SmartCharging.Domain.Data.EntityFramework.Configurations;
 using SmartCharging.Domain.Data.EntityFramework.Entities;
 
 namespace SmartCharging.Domain.Data.EntityFramework;
@@ -9,12 +10,10 @@ namespace SmartCharging.Domain.Data.EntityFramework;
 /// </summary>
 public class DataContext : DbContext
 {
-    #region Groups
-
     public virtual DbSet<Group> Groups { get; set; }
-
-    #endregion
-
+    public virtual DbSet<ChargeStation> ChargeStations { get; set; }
+    public virtual DbSet<Connector> Connectors { get; set; }
+    
     /// <summary>
     /// OnConfiguring
     /// </summary>
@@ -38,12 +37,8 @@ public class DataContext : DbContext
     /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        #region Products
-
         modelBuilder.ApplyConfiguration(new GroupConf());
-
-        #endregion
-
+        
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SmartCharging.Domain.Data.EntityFramework;
 using SmartCharging.Domain.Data.EntityFramework.Entities;
+using SmartCharging.Domain.Data.EntityFramework.Entities.Base;
 
 namespace SmartCharging.Domain.Data.GenericRepositories;
 
@@ -9,7 +10,7 @@ namespace SmartCharging.Domain.Data.GenericRepositories;
 /// GenericRepository
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class GenericRepository<T> where T : BaseEntity
+public class GenericRepository<T, TKey> where T : BaseEntity<TKey>
 {
     private readonly DbSet<T> _dbSet;
     private readonly DataContext _dataContext;
