@@ -1,10 +1,11 @@
 ﻿using Microsoft.OpenApi.Models;
+using SmartCharging.Service.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-//builder.Services.Register();
+builder.Services.RegisterDependencies();
 
 #region Swagger
 

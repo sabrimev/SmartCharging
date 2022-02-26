@@ -6,4 +6,33 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Business\ChargeStations\DTOs" />
+    <Folder Include="Business\ChargeStations\Mapping" />
+    <Folder Include="Business\ChargeStations\Services" />
+    <Folder Include="Business\ChargeStations\Validations" />
+    <Folder Include="Business\Connectors\DTOs" />
+    <Folder Include="Business\Connectors\Mapping" />
+    <Folder Include="Business\Connectors\Services" />
+    <Folder Include="Business\Connectors\Validations" />
+    <Folder Include="Business\Groups\DTOs" />
+    <Folder Include="Business\Groups\Mapping" />
+    <Folder Include="Business\Groups\Services" />
+    <Folder Include="Business\Groups\Validations" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\6.0.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartCharging.Domain\SmartCharging.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
 </Project>

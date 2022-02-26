@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SmartCharging.Api.Controllers
+namespace SmartCharging.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]/[action]")]
+public class GroupController : ControllerBase
 {
-    public class GroupController : Controller
+    public GroupController()
     {
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return Ok();
-        }
+        
+    }
+    // GET: /<controller>/
+    public IActionResult Index()
+    {
+        return Ok();
     }
 }
+
 
