@@ -11,7 +11,7 @@ public class GroupValidator : AbstractValidator<GroupDTO>
             .NotEmpty()
             .WithMessage("Name cannot be empty")
             .Length(1, 250)
-            .WithMessage("Name length cannot be greater than {1} characters");
+            .WithMessage("Name length cannot be greater than 250 characters");
 
         RuleFor(x => x.Capacity)
             .GreaterThan(0)

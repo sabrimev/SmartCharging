@@ -25,8 +25,8 @@ public class GroupController : ControllerBase
         return Ok(result);
     }
     
-    [HttpGet]
-    public async Task<IActionResult> List(GroupFilterDTO filterRequest)
+    [HttpPost]
+    public async Task<IActionResult> List([FromBody] GroupFilterDTO filterRequest)
     {
         var result = await _groupService.List(filterRequest);
         return Ok(result);

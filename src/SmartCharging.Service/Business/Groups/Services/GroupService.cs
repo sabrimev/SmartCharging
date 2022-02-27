@@ -64,7 +64,7 @@ public class GroupService : IGroupService
         }
 
         // mapping request object to entity
-        _mapper.Map(entity, request);
+        _mapper.Map(request, entity);
         
         _uow.Group.Edit(entity);
 
