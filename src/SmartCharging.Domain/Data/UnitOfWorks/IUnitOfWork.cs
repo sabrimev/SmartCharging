@@ -9,14 +9,9 @@ namespace SmartCharging.Domain.Data.UnitOfWorks;
 public interface IUnitOfWork : IDisposable
 {
     Task<int> SaveChangesAsync();
-
-    #region Repositories
-
-    #region Products
-
+    
     GenericRepository<Group, Guid> Group { get; }
-
-    #endregion
-
-    #endregion
+    GenericRepository<ChargeStation, Guid> ChargeStation { get; }
+    GenericRepository<Connector, int> Connector { get; }
+    
 }

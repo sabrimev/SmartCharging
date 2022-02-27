@@ -8,7 +8,7 @@ namespace SmartCharging.Domain.Data.UnitOfWorks;
 /// <summary>
 /// UnitOfWork
 /// </summary>
-public class UnitOfWork : IUnitOfWork
+public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly DataContext _context;
 
@@ -30,7 +30,24 @@ public class UnitOfWork : IUnitOfWork
         get { return _group ??= GetRepositoryT<Group, Guid>(); }
         set => _group = value;
     }
-
+    #endregion
+    
+    #region Connector
+    private GenericRepository<Connector, int> _connector;
+    public GenericRepository<Connector, int> Connector
+    {
+        get { return _connector ??= GetRepositoryT<Connector, int>(); }
+        set => _connector = value;
+    }
+    #endregion
+    
+    #region ChargeStation
+    private GenericRepository<ChargeStation, Guid> _chargeStation;
+    public GenericRepository<ChargeStation, Guid> ChargeStation
+    {
+        get { return _chargeStation ??= GetRepositoryT<ChargeStation, Guid>(); }
+        set => _chargeStation = value;
+    }
     #endregion
 
     #endregion
@@ -57,7 +74,7 @@ public class UnitOfWork : IUnitOfWork
 
     private bool _disposed;
 
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
         if (!_disposed)
         {

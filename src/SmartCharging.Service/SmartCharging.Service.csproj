@@ -6,12 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Business\ChargeStations\DTOs" />
-    <Folder Include="Business\ChargeStations\Mapping" />
     <Folder Include="Business\ChargeStations\Validations" />
-    <Folder Include="Business\Connectors\DTOs" />
-    <Folder Include="Business\Connectors\Mapping" />
-    <Folder Include="Business\Connectors\Validations" />
   </ItemGroup>
 
   <ItemGroup>
