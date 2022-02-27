@@ -29,6 +29,8 @@ builder.Services.AddFluentValidationRulesToSwagger();
 
 var app = builder.Build();
 
+app.ConfigureExceptionHandler();
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
