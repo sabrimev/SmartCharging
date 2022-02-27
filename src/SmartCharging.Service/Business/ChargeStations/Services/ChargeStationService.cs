@@ -5,6 +5,7 @@ using SmartCharging.Domain.Data.EntityFramework.Entities;
 using SmartCharging.Domain.Data.UnitOfWorks;
 using SmartCharging.Service.Business.ChargeStations.DTOs;
 using SmartCharging.Service.Business.Groups.DTOs;
+using SmartCharging.Service.Common.ErrorHandling.Exceptions;
 
 namespace SmartCharging.Service.Business.ChargeStations.Services;
 
@@ -46,7 +47,7 @@ public class ChargeStationService : IChargeStationService
 
         if (request.Connectors.Select(x => x.MaxCurrent).Sum() > groupCapacity.Capacity)
         {
-            throw new ArgumentException(
+            throw new AppException(
                 "The capacity in Amps of a Group should be great or equal to the sum of the Max current " +
                 "in Amps of the Connector of all Charge Stations in the Group.");
             return new ChargeStationDTO
@@ -73,6 +74,8 @@ public class ChargeStationService : IChargeStationService
 
         if (entity == null)
         {
+            throw new KeyNotFoundException("No such station found: " + request.Id);
+            
             return new ChargeStationDTO
             {
                 IsSuccess = false,
