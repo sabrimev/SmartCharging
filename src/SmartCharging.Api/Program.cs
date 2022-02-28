@@ -1,12 +1,11 @@
-﻿using FluentValidation.AspNetCore;
-using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
+using FluentValidation.AspNetCore;
 using SmartCharging.Service.Extensions;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-
 builder.Services.RegisterDependencies();
 
 #region Swagger
@@ -16,8 +15,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "GreenFlux",
-        Description = "GreenFlux Smart Charging",
+        Title = "Smart Charging",
+        Description = "GreenFlux smart charging api",
         TermsOfService = new Uri("http://www.greenflux.com"),
     });
 });

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SmartCharging.Domain.Data.EntityFramework.Entities;
 using SmartCharging.Domain.Data.EntityFramework.Entities.Base;
 
 namespace SmartCharging.Domain.Data.EntityFramework.Configurations.Base;

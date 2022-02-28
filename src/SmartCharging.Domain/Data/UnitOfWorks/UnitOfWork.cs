@@ -1,7 +1,7 @@
 ﻿using SmartCharging.Domain.Data.EntityFramework;
+using SmartCharging.Domain.Data.GenericRepositories;
 using SmartCharging.Domain.Data.EntityFramework.Entities;
 using SmartCharging.Domain.Data.EntityFramework.Entities.Base;
-using SmartCharging.Domain.Data.GenericRepositories;
 
 namespace SmartCharging.Domain.Data.UnitOfWorks;
 

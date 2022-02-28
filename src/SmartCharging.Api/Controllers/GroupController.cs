@@ -1,10 +1,7 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SmartCharging.Service.Common.Attributes;
 using SmartCharging.Service.Business.Groups.DTOs;
 using SmartCharging.Service.Business.Groups.Services;
-using SmartCharging.Service.Common.Attributes;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SmartCharging.Api.Controllers;
 
@@ -55,5 +52,3 @@ public class GroupController : ControllerBase
         return Ok(result);
     }
 }
-
-

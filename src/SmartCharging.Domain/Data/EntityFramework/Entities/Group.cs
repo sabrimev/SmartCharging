@@ -1,8 +1,6 @@
-﻿using System;
-using SmartCharging.Domain.Data.EntityFramework.Entities.Base;
+﻿using SmartCharging.Domain.Data.EntityFramework.Entities.Base;
 
 namespace SmartCharging.Domain.Data.EntityFramework.Entities;
-
 
 public class Group : BaseEntity<Guid>
 {

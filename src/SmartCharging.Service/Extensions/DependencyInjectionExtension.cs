@@ -1,9 +1,9 @@
+using SmartCharging.Domain.Data.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 using SmartCharging.Domain.Data.EntityFramework;
-using SmartCharging.Domain.Data.UnitOfWorks;
-using SmartCharging.Service.Business.ChargeStations.Services;
-using SmartCharging.Service.Business.Connectors.Services;
 using SmartCharging.Service.Business.Groups.Services;
+using SmartCharging.Service.Business.Connectors.Services;
+using SmartCharging.Service.Business.ChargeStations.Services;
 
 namespace SmartCharging.Service.Extensions;
 
@@ -22,4 +22,3 @@ public static class DependencyInjectionExtension
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     }
 }
-

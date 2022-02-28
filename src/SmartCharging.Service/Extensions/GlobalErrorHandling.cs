@@ -1,7 +1,7 @@
 using System.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
 using SmartCharging.Service.Common.ErrorHandling;
 using SmartCharging.Service.Common.ErrorHandling.Exceptions;
 

@@ -1,7 +1,7 @@
 using FluentValidation.AspNetCore;
-using SmartCharging.Service.Business.ChargeStations.Validations;
-using SmartCharging.Service.Business.Connectors.Validations;
 using SmartCharging.Service.Business.Groups.Validations;
+using SmartCharging.Service.Business.Connectors.Validations;
+using SmartCharging.Service.Business.ChargeStations.Validations;
 
 namespace SmartCharging.Service.Extensions;
 

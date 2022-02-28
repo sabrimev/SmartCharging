@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using SmartCharging.Domain.Data.EntityFramework;
-using SmartCharging.Domain.Data.EntityFramework.Entities;
 using SmartCharging.Domain.Data.EntityFramework.Entities.Base;
 
 namespace SmartCharging.Domain.Data.GenericRepositories;

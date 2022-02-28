@@ -38,4 +38,3 @@ public class ChargeStationUpdateValidator : AbstractValidator<ChargeStationUpdat
             .WithMessage("Id cannot be empty");
     }
 }
-

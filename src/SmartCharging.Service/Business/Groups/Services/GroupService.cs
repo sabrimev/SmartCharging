@@ -1,8 +1,8 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using SmartCharging.Domain.Data.EntityFramework.Entities;
+using AutoMapper.QueryableExtensions;
 using SmartCharging.Domain.Data.UnitOfWorks;
+using SmartCharging.Domain.Data.EntityFramework.Entities;
 using SmartCharging.Service.Business.Groups.DTOs;
 
 namespace SmartCharging.Service.Business.Groups.Services;

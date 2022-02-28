@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using SmartCharging.Domain.Data.EntityFramework.Configurations;
 using SmartCharging.Domain.Data.EntityFramework.Entities;
+using SmartCharging.Domain.Data.EntityFramework.Configurations;
 
 namespace SmartCharging.Domain.Data.EntityFramework;
 

@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmartCharging.Service.Common.Attributes;
 using SmartCharging.Service.Business.ChargeStations.DTOs;
 using SmartCharging.Service.Business.ChargeStations.Services;
-using SmartCharging.Service.Common.Attributes;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SmartCharging.Api.Controllers;
 
@@ -55,5 +53,3 @@ public class ChargeStationController : ControllerBase
         return Ok(result);
     }
 }
-
-

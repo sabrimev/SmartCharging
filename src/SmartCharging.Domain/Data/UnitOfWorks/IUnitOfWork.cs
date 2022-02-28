@@ -1,5 +1,5 @@
-﻿using SmartCharging.Domain.Data.EntityFramework.Entities;
-using SmartCharging.Domain.Data.GenericRepositories;
+﻿using SmartCharging.Domain.Data.GenericRepositories;
+using SmartCharging.Domain.Data.EntityFramework.Entities;
 
 namespace SmartCharging.Domain.Data.UnitOfWorks;
 
@@ -13,5 +13,4 @@ public interface IUnitOfWork : IDisposable
     GenericRepository<Group, Guid> Group { get; }
     GenericRepository<ChargeStation, Guid> ChargeStation { get; }
     GenericRepository<Connector, int> Connector { get; }
-    
 }

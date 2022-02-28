@@ -1,5 +1,5 @@
-using SmartCharging.Service.Business.Connectors.DTOs;
 using SmartCharging.Service.Common.DTOs;
+using SmartCharging.Service.Business.Connectors.DTOs;
 
 namespace SmartCharging.Service.Business.ChargeStations.DTOs;
 

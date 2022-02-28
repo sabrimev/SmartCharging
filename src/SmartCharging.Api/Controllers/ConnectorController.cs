@@ -52,5 +52,3 @@ public class ConnectorController : ControllerBase
         return Ok(result);
     }
 }
-
-
