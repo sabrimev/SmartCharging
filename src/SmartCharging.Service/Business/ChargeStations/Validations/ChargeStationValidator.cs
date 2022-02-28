@@ -3,9 +3,9 @@ using SmartCharging.Service.Business.ChargeStations.DTOs;
 
 namespace SmartCharging.Service.Business.ChargeStations.Validations;
 
-public abstract class ChargeStationValidator : AbstractValidator<ChargeStationDTO>
+public class ChargeStationValidator : AbstractValidator<ChargeStationDTO>
 {
-    protected ChargeStationValidator()
+    public ChargeStationValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty()
@@ -23,9 +23,9 @@ public abstract class ChargeStationValidator : AbstractValidator<ChargeStationDT
     }
 }
 
-public abstract class ChargeStationUpdateValidator : AbstractValidator<ChargeStationUpdateDTO>
+public class ChargeStationUpdateValidator : AbstractValidator<ChargeStationUpdateDTO>
 {
-    protected ChargeStationUpdateValidator()
+    public ChargeStationUpdateValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty()

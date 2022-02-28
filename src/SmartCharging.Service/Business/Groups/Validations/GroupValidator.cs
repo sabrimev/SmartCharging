@@ -3,9 +3,9 @@ using SmartCharging.Service.Business.Groups.DTOs;
 
 namespace SmartCharging.Service.Business.Groups.Validations;
 
-public abstract class GroupValidator : AbstractValidator<GroupDTO>
+public class GroupValidator : AbstractValidator<GroupDTO>
 {
-    protected GroupValidator()
+    public GroupValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty()
