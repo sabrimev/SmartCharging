@@ -42,7 +42,7 @@ public class ChargeStationController : ControllerBase
     
     [HttpPut]
     [ValidateModel]
-    public async Task<IActionResult> Edit([FromBody] ChargeStationDTO request)
+    public async Task<IActionResult> Edit([FromBody] ChargeStationUpdateDTO request)
     {
         var result = await _chargeStationService.Edit(request);
         return Ok(result);

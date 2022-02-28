@@ -50,6 +50,16 @@ public class GenericRepository<T, TKey> where T : BaseEntity<TKey>
     {
         return await _dbSet.FirstOrDefaultAsync(x => x.Id.Equals(id));
     }
+    
+    /// <summary>
+    /// AnyAsync
+    /// </summary>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await _dbSet.Where(predicate).AnyAsync();
+    }
 
     /// <summary>
     /// List

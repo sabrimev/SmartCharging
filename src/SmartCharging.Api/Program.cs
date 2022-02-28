@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddFluentValidation(ValidationExtention.Register);
+builder.Services.AddFluentValidation(ValidationExtension.Register);
 builder.Services.AddFluentValidationRulesToSwagger();
 
 #endregion

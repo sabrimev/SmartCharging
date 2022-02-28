@@ -9,5 +9,6 @@ public class ChargeStationMapper : Profile
     public ChargeStationMapper()
     {
         CreateMap<ChargeStationDTO, ChargeStation>().ReverseMap();
+        CreateMap<ChargeStationUpdateDTO, ChargeStation>();
     }
 }
