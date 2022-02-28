@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SmartCharging.Domain.Data.EntityFramework.Entities;
 using SmartCharging.Domain.Data.UnitOfWorks;
 using SmartCharging.Service.Business.ChargeStations.DTOs;
+using SmartCharging.Service.Common;
 using SmartCharging.Service.Common.ErrorHandling.Exceptions;
 
 namespace SmartCharging.Service.Business.ChargeStations.Services;
@@ -41,6 +42,11 @@ public class ChargeStationService : IChargeStationService
 
     public async Task<ChargeStationDTO> Create(ChargeStationDTO request)
     {
+        if (request?.Connectors?.Count > Constants.MaxConnectorsPerStation)
+        {
+            throw new AppException("Cannot add more than " + Constants.MaxConnectorsPerStation + " connectors");
+        }
+        
         // Check group capacity
         var group = await _uow.Group.FindAsync(request.GroupId);
 
@@ -49,18 +55,20 @@ public class ChargeStationService : IChargeStationService
             throw new KeyNotFoundException("No group found: " + request.GroupId);
         }
 
-        if (request.Connectors.Select(x => x.MaxCurrent).Sum() > group.Capacity)
+        decimal totalAmp = request.Connectors.Select(x => x.MaxCurrent).Sum();
+        if (totalAmp > group.Capacity)
         {
-            throw new AppException(
-                "The capacity in Amps of a Group should be great or equal to the sum of the Max current " +
-                "in Amps of the Connector of all Charge Stations in the Group.");
+            throw new AppException("Group capacity is not enough ("+ totalAmp +" / "+ group.Capacity+")");
         }
 
         var entity = _mapper.Map<ChargeStation>(request);
         _uow.ChargeStation.Create(entity);
 
         await _uow.SaveChangesAsync();
-        var result = _mapper.Map<ChargeStationDTO>(entity);
+        
+        // Check and receive inserted data
+        var station = await _uow.ChargeStation.FindAsync(entity.Id);
+        var result = _mapper.Map<ChargeStationDTO>(station);
         
         return result;
     }

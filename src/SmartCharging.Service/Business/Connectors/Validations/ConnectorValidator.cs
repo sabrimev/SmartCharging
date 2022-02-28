@@ -7,5 +7,8 @@ public class ConnectorValidator : AbstractValidator<ConnectorDTO>
 {
     public ConnectorValidator()
     {
+        RuleFor(x => x.MaxCurrent)
+            .GreaterThan(0)
+            .WithMessage("Connector value should be greater than zero");
     }
 }
