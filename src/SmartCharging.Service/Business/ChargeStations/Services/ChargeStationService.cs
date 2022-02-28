@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using SmartCharging.Domain.Data.EntityFramework.Entities;
 using SmartCharging.Domain.Data.UnitOfWorks;
 using SmartCharging.Service.Business.ChargeStations.DTOs;
-using SmartCharging.Service.Business.Groups.DTOs;
 using SmartCharging.Service.Common.ErrorHandling.Exceptions;
 
 namespace SmartCharging.Service.Business.ChargeStations.Services;
@@ -66,24 +65,13 @@ public class ChargeStationService : IChargeStationService
         return result;
     }
 
-    public async Task<ChargeStationDTO> Edit(ChargeStationUpdateDTO request)
+    public async Task<bool> Edit(ChargeStationUpdateDTO request)
     {
-        var entity = await _uow.ChargeStation.ListNT()
-            .Where(x => x.Id == request.Id)
-            .FirstOrDefaultAsync();
+        var entity = await _uow.ChargeStation.FindAsync(request.Id);
         
         if (entity == null)
         {
             throw new KeyNotFoundException("No station found: " + request.Id);
-        }
-        
-        if (request.GroupId != Guid.Empty)
-        {
-            var hasGroup = await _uow.Group.AnyAsync(x => x.Id == request.GroupId);
-            if (!hasGroup)
-            {
-                throw new KeyNotFoundException("No group found: " + request.GroupId);
-            }
         }
 
         // mapping request object to entity
@@ -92,12 +80,9 @@ public class ChargeStationService : IChargeStationService
         _uow.ChargeStation.Edit(entity);
 
         // Apply changes
-        await _uow.SaveChangesAsync();
-        
-        // Map Entity to DTO
-        var result = _mapper.Map<ChargeStationDTO>(entity);
-        
-        return result;
+        int result = await _uow.SaveChangesAsync();
+
+        return result > 0;
     }
 
     public async Task<bool> Delete(Guid id)

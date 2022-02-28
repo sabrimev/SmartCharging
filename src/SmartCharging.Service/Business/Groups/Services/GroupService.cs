@@ -60,7 +60,7 @@ public class GroupService : IGroupService
 
         if (entity == null)
         {
-            return request;
+            throw new KeyNotFoundException("No group found: " + request.Id);
         }
 
         // mapping request object to entity
@@ -80,10 +80,21 @@ public class GroupService : IGroupService
     public async Task<bool> Delete(Guid id)
     {
         var entity = await _uow.Group.FindAsync(id);
-
+        
         if (entity == null)
         {
-            return false;
+            throw new KeyNotFoundException("No group found: " + id);
+        }
+        
+        // Delete stations with connectors
+        var stationsToBeRemoved = await _uow.ChargeStation.ListNT()
+            .Where(x => x.GroupId == entity.Id)
+            .Include(x => x.Connectors)
+            .ToListAsync();
+
+        foreach (var station in stationsToBeRemoved)
+        {
+            _uow.ChargeStation.Delete(station);
         }
         
         _uow.Group.Delete(entity);
