@@ -42,32 +42,8 @@ public class ConnectorService : IConnectorService
 
     public async Task<ConnectorDTO> Create(ConnectorDTO request)
     {
-        var chargeStation = await _uow.ChargeStation.ListNT()
-            .Where(x => x.Id == request.ChargeStationId)
-            .Include(x => x.Connectors)
-            .FirstOrDefaultAsync();
-        
-        if (chargeStation == null)
-        {
-            throw new KeyNotFoundException("No station found: " + request.ChargeStationId);
-        }else if (chargeStation.Connectors?.Count >= Constants.MaxConnectorsPerStation)
-        {
-            throw new AppException(
-                "Charge station cannot have more than " + Constants.MaxConnectorsPerStation + " connectors");
-        }
+        await ValidateCapacity(request);
 
-        var group = await _uow.Group.FindAsync(chargeStation.GroupId);
-        if (group == null)
-        {
-            throw new AppException("No group found");
-        }
-
-        decimal totalAmp = chargeStation.Connectors.Select(x => x.MaxCurrent).Sum() + request.MaxCurrent;
-        if (totalAmp > group.Capacity)
-        {
-            throw new AppException("Group capacity is not enough ("+ totalAmp +" / "+ group.Capacity+")");
-        }
-        
         var entity = _mapper.Map<Connector>(request);
         _uow.Connector.Create(entity);
 
@@ -88,7 +64,13 @@ public class ConnectorService : IConnectorService
         {
             throw new KeyNotFoundException("No connector found: " + request.Id);
         }
-
+        
+        // Check station
+        if (request.ChargeStationId != Guid.Empty)
+        {
+            await ValidateCapacity(request);
+        }
+        
         // mapping request object to entity
         _mapper.Map(request, entity);
         
@@ -115,5 +97,36 @@ public class ConnectorService : IConnectorService
         var result = await _uow.SaveChangesAsync();
 
         return result > 0;
+    }
+
+    private async Task ValidateCapacity(ConnectorDTO request)
+    {
+        var chargeStation = await _uow.ChargeStation.ListNT()
+            .Where(x => x.Id == request.ChargeStationId)
+            .Include(x => x.Connectors)
+            .FirstOrDefaultAsync();
+        
+        if (chargeStation == null)
+        {
+            throw new KeyNotFoundException("No station found: " + request.ChargeStationId);
+        }
+            
+        if (chargeStation.Connectors?.Count >= Constants.MaxConnectorsPerStation)
+        {
+            throw new AppException(
+                "Charge station cannot have more than " + Constants.MaxConnectorsPerStation + " connectors");
+        }
+
+        var group = await _uow.Group.FindAsync(chargeStation.GroupId);
+        if (group == null)
+        {
+            throw new AppException("No group found");
+        }
+
+        decimal totalAmp = chargeStation.Connectors.Select(x => x.MaxCurrent).Sum() + request.MaxCurrent;
+        if (totalAmp > group.Capacity)
+        {
+            throw new AppException("Group capacity is not enough ("+ totalAmp +" / "+ group.Capacity+")");
+        }
     }
 }

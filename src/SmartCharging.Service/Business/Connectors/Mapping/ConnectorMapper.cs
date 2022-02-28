@@ -8,6 +8,9 @@ public class ConnectorMapper : Profile
 {
     public ConnectorMapper()
     {
-        CreateMap<ConnectorDTO, Connector>().ReverseMap();
+        CreateMap<ConnectorDTO, Connector>()
+            .ForMember(dest => dest.ChargeStationId, opt => opt.Condition(src => (src.ChargeStationId != Guid.Empty)));
+
+        CreateMap<Connector, ConnectorDTO>();
     }
 }

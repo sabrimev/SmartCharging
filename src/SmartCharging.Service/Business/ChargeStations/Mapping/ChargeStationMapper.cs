@@ -9,6 +9,8 @@ public class ChargeStationMapper : Profile
     public ChargeStationMapper()
     {
         CreateMap<ChargeStationDTO, ChargeStation>().ReverseMap();
-        CreateMap<ChargeStationUpdateDTO, ChargeStation>();
+        
+        CreateMap<ChargeStationUpdateDTO, ChargeStation>()
+            .ForMember(dest => dest.GroupId, opt => opt.Condition(src => (src.GroupId != Guid.Empty)));
     }
 }

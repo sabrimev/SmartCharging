@@ -22,7 +22,7 @@ public class ChargeStationService : IChargeStationService
     
     public async Task<ChargeStationDTO> Find(Guid id)
     {
-        var result = await _uow.Group.List(x => x.Id == id)
+        var result = await _uow.ChargeStation.List(x => x.Id == id)
             .ProjectTo<ChargeStationDTO>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
 
