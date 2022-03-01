@@ -3,13 +3,14 @@
 The project is developed in Rider and a temporary cloud database used (SQL Server).
 Connection string can be found in `appsettings.Development.json`
 
-1. Run the project
-2. Swagger window will open
-3. Additional database connection is not required. You can use any tool to track data changes.
-4. Create Group
-5. Create Charge Station
-6. Create Connectors
-7. Run other APIs
+1. Select configuration in IDE: SmartCharging.Api - Development 
+2. Run the project
+3. Swagger window will open
+4. Additional database connection is not required. You can use any tool to track data changes.
+5. Create Group
+6. Create Charge Station
+7. Create Connectors
+8. Run other APIs
 
 ### Migration
 
