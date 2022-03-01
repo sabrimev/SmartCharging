@@ -81,6 +81,34 @@ public class ChargeStationService : IChargeStationService
         {
             throw new KeyNotFoundException("No station found: " + request.Id);
         }
+        
+        // Group is changed. Check capacity
+        if (request.GroupId != Guid.Empty && request.GroupId != entity.GroupId)
+        {
+            // Get existing group capacity
+            var existingGroup = await _uow.Group.FindAsync(request.GroupId);
+
+            if (existingGroup == null)
+            {
+                throw new KeyNotFoundException("No group found: " + request.GroupId);
+            }
+            
+            var chargeStations = await _uow.ChargeStation.ListNT()
+                .Where(x => x.GroupId == request.GroupId || x.GroupId == entity.GroupId)
+                .Include(x => x.Connectors)
+                .ToListAsync();
+
+            decimal groupTotalAmps = 0;
+            foreach (var station in chargeStations)
+            {
+                groupTotalAmps += station.Connectors.Select(x => x.MaxCurrent).Sum();
+            }
+            
+            if (groupTotalAmps > existingGroup.Capacity)
+            {
+                throw new AppException("Group capacity is not enough ("+ groupTotalAmps +" / "+ existingGroup.Capacity+")");
+            }
+        }
 
         // mapping request object to entity
         _mapper.Map(request, entity);
